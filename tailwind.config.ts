@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss';
-import { tailwindcssMotion } from 'tailwindcss-motion';
 
 module.exports = {
   content: [
@@ -15,5 +14,5 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindcssMotion],
+  plugins: [],
 } satisfies Config;
