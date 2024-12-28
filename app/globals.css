@@ -2,20 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ededed;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #171717;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+    :root {
+      --background: 29 33% 99%;
+      --foreground: 29 59% 3%;
+      --muted: 29 17% 95%;
+      --muted-foreground: 29 13% 31%;
+      --popover: 29 33% 99%;
+      --popover-foreground: 29 59% 3%;
+      --card: 29 33% 98%;
+      --card-foreground: 29 59% 2%;
+      --border: 29 5% 91%;
+      --input: 29 5% 91%;
+      --primary: 29 36% 60%;
+      --primary-foreground: 29 36% 0%;
+      --secondary: 29 8% 81%;
+      --secondary-foreground: 29 8% 21%;
+      --accent: 29 8% 81%;
+      --accent-foreground: 29 8% 21%;
+      --destructive: 12 90% 22%;
+      --destructive-foreground: 12 90% 82%;
+      --ring: 29 36% 60%;
+      --chart-1: 29 36% 60%;
+      --chart-2: 29 8% 81%;
+      --chart-3: 29 8% 81%;
+      --chart-4: 29 8% 84%;
+      --chart-5: 29 39% 60%;
+      --radius: 0.5rem;
+    }
+  
+    .dark {
+      --background: 27.69 19.4% 13.14%;
+      --foreground: 240 100% 99.8%;
+      --muted: 29 17% 5%;
+      --muted-foreground: 29 13% 69%;
+      --popover: 29 31% 1%;
+      --popover-foreground: 240 100% 99.8%;
+      --card: 27.69 10.73% 11.46%;
+      --card-foreground: 240 100% 99.8%;
+      --border: 39.16 89.3% 63.33%;
+      --input: 29 5% 15%;
+      --primary: 29 36% 60%;
+      --primary-foreground: 29 36% 0%;
+      --secondary: 29 17% 9%;
+      --secondary-foreground: 29 17% 69%;
+      --accent: 29 17% 9%;
+      --accent-foreground: 29 17% 69%;
+      --destructive: 12 90% 56%;
+      --destructive-foreground: 240 100% 99.8%;
+      --ring: 29 36% 60%;
+      --chart-1: 29 36% 60%;
+      --chart-2: 29 17% 9%;
+      --chart-3: 29 17% 9%;
+      --chart-4: 29 17% 12%;
+      --chart-5: 29 39% 60%;
+    }
+  }
+  
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
