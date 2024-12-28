@@ -24,6 +24,7 @@ const eslintConfig = [
       'react/react-in-jsx-scope': 'off', // React auto-import in Next.js
       'react/prop-types': 'off', // Disable prop-types for TypeScript usage
       '@next/next/no-html-link-for-pages': 'error', // Enforce <Link> for internal routing
+      '@typescript-eslint/no-require-import': 'off', // Disable require() import
     },
   },
 ];

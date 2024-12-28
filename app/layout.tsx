@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import './globals.css';
+import HeaderNav from '@/components/header-nav';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,11 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>{/* next-themes recommends this */}
+    <html lang="en" suppressHydrationWarning>
+      {/* next-themes recommends this */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <HeaderNav />
           {children}
         </ThemeProvider>
       </body>

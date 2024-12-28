@@ -1,12 +1,10 @@
-import Link from 'next/link';
-
 export default function AboutPage() {
   return (
-    <div>
+    <>
       <h1>About</h1>
-      <Link href="/">
-        <button>Home</button>
-      </Link>
-    </div>
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <h1>About</h1>
+      </div>
+    </>
   );
 }

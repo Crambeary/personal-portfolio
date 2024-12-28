@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { Skeleton } from "./ui/skeleton"
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -16,7 +16,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Skeleton className="h-10 w-10" />
+      <Skeleton className={`h-8 w-8 m-2 ${className}`} />
     )
   }
 
@@ -26,6 +26,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+      className={className}
     >
       {theme === "light" ? (
         <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
