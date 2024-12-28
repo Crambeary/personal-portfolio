@@ -1,56 +1,102 @@
 'use client';
 
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@components/ui/navigation-menu";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import clsx from "clsx";
-import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from '@components/ui/navigation-menu';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
+import { ThemeToggle } from '@/components/theme-toggle';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@components/ui/drawer';
+import { useState } from 'react';
+import { Button } from './ui/button';
+import { Menu } from 'lucide-react';
 
+const navItems = [
+  {
+    title: 'Home',
+    href: '/',
+  },
+  {
+    title: 'About',
+    href: '/about',
+  },
+];
 
 export default function HeaderNav() {
-    const pathname = usePathname();
-    return (
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button*/}
-            <button
-              type="button"
-              className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-            </button>
-          </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <NavigationMenu className="">
-              <Link href="/" passHref legacyBehavior>
-                <NavigationMenuLink
-                  className={clsx(
-                    navigationMenuTriggerStyle(),
-                    pathname === '/' && 'underline',
-                  )}
-                >
-                  Home
-                </NavigationMenuLink>
-              </Link>
-              <Link href="/about" passHref legacyBehavior>
-                <NavigationMenuLink
-                  className={clsx(
-                    navigationMenuTriggerStyle(),
-                    pathname === '/about' && 'underline',
-                  )}
-                >
-                  About
-                </NavigationMenuLink>
-              </Link>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <ThemeToggle />
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  return (
+    <header className="sticky top-0 z-50 bg-secondary/75 bg-gradient-to-b from-gray-50 dark:from-black from-10% backdrop-blur-sm">
+      <div className="container mx-auto flex h-16 w-full items-center">
+        <div className="mr-4 ml-2 md:hidden">
+          <Drawer open={open} onOpenChange={setOpen}>
+            <DrawerTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Navigation</DrawerTitle>
+              </DrawerHeader>
+              <div className="grid gap-4 py-4">
+                {navItems.map((navItem) => (
+                  <Link
+                    key={navItem.href}
+                    href={navItem.href}
+                    passHref
+                    legacyBehavior
+                  >
+                    <Button variant="link" className="justify-start">
+                      {navItem.title}
+                    </Button>
+                  </Link>
+                ))}
               </div>
-            </NavigationMenu>
-          </div>
+              <DrawerFooter>
+                <DrawerClose asChild>
+                  <Button variant="outline">Close</Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        </div>
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList>
+            {navItems.map((navItem) => (
+              <NavigationMenuItem key={navItem.href}>
+                <Link href={navItem.href} passHref legacyBehavior>
+                  <NavigationMenuLink
+                    className={clsx(
+                      navigationMenuTriggerStyle(),
+                      pathname === navItem.href && 'underline',
+                    )}
+                  >
+                    {navItem.title}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+        <div className="ml-auto mr-2 flex items-center">
+          <ThemeToggle />
         </div>
       </div>
-    );
+    </header>
+  );
 }
