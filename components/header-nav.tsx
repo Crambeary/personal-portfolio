@@ -33,6 +33,14 @@ const navItems = [
     title: 'About',
     href: '/about',
   },
+  {
+    title: 'Projects',
+    href: '/projects',
+  },
+  {
+    title: 'Contact',
+    href: '/contact',
+  },
 ];
 
 export default function HeaderNav() {
@@ -81,6 +89,7 @@ export default function HeaderNav() {
             </DrawerContent>
           </Drawer>
         </div>
+        <div className="mr-4 text-xl font-bold">Marc&apos;s Portfolio</div>
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             {navItems.map((navItem) => (
