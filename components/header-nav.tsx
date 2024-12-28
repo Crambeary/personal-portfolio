@@ -61,7 +61,13 @@ export default function HeaderNav() {
                     passHref
                     legacyBehavior
                   >
-                    <Button variant="link" className="justify-start">
+                    <Button
+                      variant="secondary"
+                      className={clsx(
+                        'mx-2 justify-center',
+                        pathname === navItem.href && 'underline',
+                      )}
+                    >
                       {navItem.title}
                     </Button>
                   </Link>
