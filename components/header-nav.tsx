@@ -89,7 +89,9 @@ export default function HeaderNav() {
             </DrawerContent>
           </Drawer>
         </div>
-        <div className="mr-4 text-xl font-bold">Marc&apos;s Portfolio</div>
+        <div className="mr-4 text-xl font-normal font-serif text-primary">
+          Marc&apos;s Portfolio
+        </div>
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             {navItems.map((navItem) => (
