@@ -2,11 +2,8 @@ import Link from 'next/link';
 
 export default function AboutPage() {
   return (
-    <div>
+    <div className="flex h-screen w-screen flex-col items-center justify-center">
       <h1>About</h1>
-      <Link href="/">
-        <button>Home</button>
-      </Link>
     </div>
   );
 }
